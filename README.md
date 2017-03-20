@@ -6,6 +6,7 @@
   - [1. Hello World](#1-hello-world)
   - [2.Bindings](#2bindings)
     - [2.1 Linked Bindings](#21-linked-bindings)
+    - [2.2 Annotation Bindings](#22-annotation-bindings)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -90,7 +91,7 @@ public class HelloAnnotations {
 As a comparison, in spring:
 ```java
 @Autowired
-@Qualifier(ShenZhenSay.class)
+@Qualifier("shenZhenSay")
 private IPersonSay person;
 ```
 
