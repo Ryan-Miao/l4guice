@@ -13,7 +13,8 @@ public class TransactionLog {
 
     public void logChargeResult(ChargeResult result) {
         if (result == null) {
-            LOGGER.error("Charge failed. result[{}]", result);
+            LOGGER.error("Charge failed. result is null.");
+            return;
         }
 
         if (result.isSuccessful()){
