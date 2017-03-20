@@ -24,16 +24,4 @@ public class BillingModule extends AbstractModule {
         bind(BillingService.class).to(RealBillingService.class);
     }
 
-    public static void main(String[] args) {
-        Injector injector = Guice.createInjector(new BillingModule());
-        BillingService billingService = injector.getInstance(BillingService.class);
-        Receipt receipt = billingService.chargeOrder(new PizzaOrder(new BigDecimal(100)),
-                new CreditCard("43012121"));
-        LOGGER.info("result {}", receipt);
-
-        receipt = billingService.chargeOrder(new PizzaOrder(null),
-                new CreditCard("43012121"));
-        LOGGER.info("result {}", receipt);
-
-    }
 }
