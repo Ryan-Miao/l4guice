@@ -25,7 +25,7 @@ public class CreditCardProcessor {
     public ChargeResult charge(CreditCard creditCard, BigDecimal amount) throws UnreachableException {
         String validate = validate(creditCard, amount);
         if (StringUtils.isNotBlank(validate)){
-            return new ChargeResult(validate);
+            throw new UnreachableException("amount can not be null");
         }
 
         LOGGER.info("credit[{}] changed ${} ", creditCard.getNo(), amount.doubleValue());
@@ -35,11 +35,11 @@ public class CreditCardProcessor {
 
     private String validate(CreditCard creditCard, BigDecimal amount) {
         String msg = null;
-        if (creditCard == null ){
-            msg = "credit card can not be null.";
-        }else if(StringUtils.isBlank(creditCard.getNo())){
-            msg = "credit no can not be empty";
-        }
+//        if (creditCard == null ){
+//            msg = "credit card can not be null.";
+//        }else if(StringUtils.isBlank(creditCard.getNo())){
+//            msg = "credit no can not be empty";
+//        }
 
         if (amount == null){
             msg = "Amount can not be null.";

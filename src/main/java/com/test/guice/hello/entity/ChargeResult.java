@@ -11,22 +11,19 @@ public class ChargeResult {
         this.successful = successful;
     }
 
-    public ChargeResult(String declineMessage) {
-        this.declineMessage = declineMessage;
-        this.successful = false;
-    }
 
     public boolean wasSuccessful() {
 
         return successful;
     }
 
-    public String getDeclineMessage() {
-        return declineMessage;
-    }
 
     public boolean isSuccessful() {
         return successful;
+    }
+
+    public String getDeclineMessage() {
+        return declineMessage;
     }
 
     @Override

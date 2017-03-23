@@ -12,10 +12,6 @@ public class TransactionLog {
     private static  final Logger LOGGER = LoggerFactory.getLogger(TransactionLog.class);
 
     public void logChargeResult(ChargeResult result) {
-        if (result == null) {
-            LOGGER.error("Charge failed. result is null.");
-            return;
-        }
 
         if (result.isSuccessful()){
             LOGGER.info("Charge success. result[{}]", result);

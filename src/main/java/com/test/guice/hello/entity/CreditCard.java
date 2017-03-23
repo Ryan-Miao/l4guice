@@ -15,7 +15,4 @@ public class CreditCard {
         return no;
     }
 
-    public void setNo(String no) {
-        this.no = no;
-    }
 }

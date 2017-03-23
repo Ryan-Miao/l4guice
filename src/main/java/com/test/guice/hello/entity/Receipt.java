@@ -46,7 +46,7 @@ public class Receipt {
                 '}';
     }
 
-    public static enum Status{
+    public enum Status{
         SUCCESS, FAILED, DECLINE
     }
 }

@@ -9,9 +9,6 @@ public class MySqlDatabaseTrannsactionLog extends DatabaseTransactionLog {
     private String url;
     private Integer threadPoolSize;
 
-    public MySqlDatabaseTrannsactionLog() {
-    }
-
     public MySqlDatabaseTrannsactionLog(String url, Integer threadPoolSize) {
         this.url = url;
         this.threadPoolSize = threadPoolSize;

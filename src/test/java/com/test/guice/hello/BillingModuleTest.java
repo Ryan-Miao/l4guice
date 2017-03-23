@@ -33,7 +33,7 @@ public class BillingModuleTest {
 
         receipt = billingService.chargeOrder(new PizzaOrder(null),
                 new CreditCard("43012121"));
-        assertEquals(Receipt.Status.DECLINE, receipt.getStatus());
+        assertEquals(Receipt.Status.FAILED, receipt.getStatus());
     }
 
 }

@@ -5,9 +5,6 @@ package com.test.guice.hello.exception;
  */
 public class UnreachableException extends  Exception {
 
-    public UnreachableException() {
-    }
-
     public UnreachableException(String message) {
         super(message);
     }
