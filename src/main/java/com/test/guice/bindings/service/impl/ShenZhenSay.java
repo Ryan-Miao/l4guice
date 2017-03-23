@@ -1,7 +1,7 @@
-package com.test.guice.bindings.AnnotationsBindgings.service.impl;
+package com.test.guice.bindings.service.impl;
 
-import com.test.guice.bindings.AnnotationsBindgings.service.City;
-import com.test.guice.bindings.AnnotationsBindgings.service.IPersonSay;
+import com.test.guice.bindings.service.City;
+import com.test.guice.bindings.service.IPersonSay;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

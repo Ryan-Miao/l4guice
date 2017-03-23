@@ -7,6 +7,8 @@
   - [2.Bindings](#2bindings)
     - [2.1 Linked Bindings](#21-linked-bindings)
     - [2.2 Annotation Bindings](#22-annotation-bindings)
+    - [2.3 Instance Bindings](#23-instance-bindings)
+    - [2.4 @Providers Methods](#24-providers-methods)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -26,6 +28,8 @@ learning for guice
 Example code@`com.test.guice.hello`   
 Main class: `com.test.guice.hello.BillingModule`
 
+Note that it will throw a `com.google.inject.CreationException` 
+if bind multiple class with the same key.
 
 
 ## 2.Bindings
@@ -115,3 +119,102 @@ public class AnnotationBindingModule extends AbstractModule {
     }
 }
 ```
+
+
+### 2.3 Instance Bindings
+>You can bind a type to specific instance of that type. This is usually only 
+useful only for objects that don't have dependencies of their own, such 
+as value objects.
+
+Example code@ `com.test.guice.bindings.InstanceBindings.ConfigBind` 
+`com.test.guice.bindings.InstanceBindings.ConfigModule`
+
+**Bind**:
+```java
+public class ConfigModule extends AbstractModule {
+    @Override
+    protected void configure() {
+        bind(String.class)
+                .annotatedWith(Names.named("jdbc.url"))
+                .toInstance("jdbc:mysql://localhost/pizza");
+        bind(Integer.class)
+                .annotatedWith(Names.named("jdbc.timeout"))
+                .toInstance(10);
+    }
+    
+}
+
+
+```
+
+**Inject**:
+```java
+@Inject
+@Named("jdbc.url")
+private String jdbcUrl;
+
+@Inject
+@Named("jdbc.timeout")
+private Integer timeout;
+
+```
+Or:
+```java
+@Inject
+public ConfigBind(@Named("jdbc.url")String jdbcUrl,
+    @Named("jdbc.timeout")Integer timeout) {
+    this.jdbcUrl = jdbcUrl;
+    this.timeout = timeout;
+}
+```
+
+>Avoid using `.toInstance` with objects that are complicated to create, since it 
+can slow down application startup. You can use an `@Provides` method instead.  
+
+
+### 2.4 @Providers Methods
+>When you need code to create an object, use an `@Provides` method. The method must be defined 
+within a module, and it must have an `@Provides` annotation. The method's return 
+type is the bound type. Whenever the injector needs an instance of that type, it 
+will invoke the method.   
+If the `@Provides` method has a binding annotation liken `@Chinese` or `@Named("xx")`,
+Guice binds the annotated type. Dependencies can be passed in as 
+parameters to the method. The injector will exercise the 
+bindings for each of these before invoking the method.
+
+Example code@ `com.test.guice.bindings.ProvidesBindings.ObjectInstanceModule`
+
+**Bind by @Providers**:
+```java
+public class ObjectInstanceModule extends AbstractModule {
+
+    public static final String JDBC_URL = "jdbc:mysql://localhost/pizaa";
+    public static final Integer THREAD_POOL_SIZE = 30;
+
+    @Override
+    protected void configure() {
+        bind(IPersonSay.class)
+                .to(NewYorkSay.class);
+    }
+
+    @Provides
+    TransactionLog provideTransactionLog(){
+        return new MySqlDatabaseTrannsactionLog(
+                JDBC_URL, THREAD_POOL_SIZE);
+    }
+
+    @Provides @Chinese
+    IPersonSay providePerson(){
+        return new ShenZhenSay();
+    }
+
+}
+```
+**Throwing Exceptions**:  
+>`Guice` does not allow exceptions to be thrown from Providers. 
+Exceptions thrown by `Provides` methods will be wrapped in 
+a `ProvisionException`. It is bad practice to allow any 
+kind of exception to be thrown--runtime or checked--from 
+an `@Provides` method. If you need to throw an exception for some 
+reason, you may want to use the [ThhrowingProviders extension](https://github.com/google/guice/wiki/ThrowingProviders) 
+`@CheckedProvides` methods.

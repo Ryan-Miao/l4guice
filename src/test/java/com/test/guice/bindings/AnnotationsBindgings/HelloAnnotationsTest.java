@@ -2,7 +2,8 @@ package com.test.guice.bindings.AnnotationsBindgings;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-import com.test.guice.bindings.AnnotationsBindgings.service.City;
+import com.test.guice.bindings.service.City;
+import com.test.guice.bindings.service.HelloAnnotations;
 import org.junit.Before;
 import org.junit.Test;
 

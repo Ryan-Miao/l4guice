@@ -1,4 +1,4 @@
-package com.test.guice.bindings.AnnotationsBindgings;
+package com.test.guice.bindings.service;
 
 import com.google.inject.BindingAnnotation;
 import java.lang.annotation.Target;

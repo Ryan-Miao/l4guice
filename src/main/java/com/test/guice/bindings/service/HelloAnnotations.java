@@ -1,9 +1,6 @@
-package com.test.guice.bindings.AnnotationsBindgings;
+package com.test.guice.bindings.service;
 
 import com.google.inject.Inject;
-import com.google.inject.name.Named;
-import com.test.guice.bindings.AnnotationsBindgings.service.City;
-import com.test.guice.bindings.AnnotationsBindgings.service.IPersonSay;
 
 /**
  * Created by rmiao on 3/20/2017.

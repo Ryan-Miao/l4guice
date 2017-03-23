@@ -1,7 +1,5 @@
 package com.test.guice.hello.entity;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
-
 import java.math.BigDecimal;
 
 /**
@@ -34,29 +32,10 @@ public class Receipt {
         return new Receipt(message, Status.FAILED);
     }
 
-    public BigDecimal getAmount() {
-        return amount;
-    }
-
-    public void setAmount(BigDecimal amount) {
-        this.amount = amount;
-    }
-
     public Status getStatus() {
         return status;
     }
 
-    public void setStatus(Status status) {
-        this.status = status;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
 
     @Override
     public String toString() {

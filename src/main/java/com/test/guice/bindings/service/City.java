@@ -1,4 +1,4 @@
-package com.test.guice.bindings.AnnotationsBindgings.service;
+package com.test.guice.bindings.service;
 
 /**
  * Created by rmiao on 3/20/2017.
